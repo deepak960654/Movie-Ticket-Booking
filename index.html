@@ -3,77 +3,201 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <title>Enhanced Movie Ticket Booking</title>
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
-    <style>
-        body {
-            display: unset;
-        }
-      
-    </style>
 </head>
 <body>
     <nav>
-        <a href="/"><span>Vegus</span> Cinema</a>
+        <div class="logo">
+            <span>Vegus</span> Cinema
+        </div>
     </nav>
 
-    <div class="cards">
-        <a href="book.html?Jawan" class="card">
-            <img src="img/jawan.jpg" alt="">
-        </a>
-        <a href="book.html?Gadar2" class="card">
-            <img src="img/Gadar2.jpg" alt="">
-        </a>
-        <a href="book.html?Jawan" class="card">
-            <img src="img/eesho.jpeg" alt="">
-        </a>
-        <a href="book.html?Jawan" class="card">
-            <img src="img/collage romance.jpg" alt="">
-        </a>
-        <a href="book.html?Jawan" class="card">
-            <img src="img/eternals.jpg" alt="">
-        </a>
-        <a href="book.html?Jawan" class="card">
-            <img src="img/spiderman.jpg" alt="">
-        </a>
-        <a href="book.html?Jawan" class="card">
-            <img src="img/the boys.jpg" alt="">
-        </a>
-        <a href="book.html?Jawan" class="card">
-            <img src="img/thor love of thunder.jpg" alt="">
-        </a>
-        <a href="book.html?Jawan" class="card">
-            <img src="img/topgun.jpg" alt="">
-        </a>
-        <a href="book.html?Jawan" class="card">
-            <img src="img/ant man.jpg" alt="">
-        </a>
-        <a href="book.html?Jawan" class="card">
-            <img src="img/avengers.jpg" alt="">
-        </a>
-        <a href="book.html?Jawan" class="card">
-            <img src="img/Jhon Wick.jpg" alt="">
-        </a>
-        <a href="book.html?Jawan" class="card">
-            <img src="img/jurassic world.jpg" alt="">
-        </a>
-        <a href="book.html?Jawan" class="card">
-            <img src="img/kota factory.jpg" alt="">
-        </a>
-        <a href="book.html?Jawan" class="card">
-            <img src="img/money heist.jpg" alt="">
-        </a>
-        <a href="book.html?Jawan" class="card">
-            <img src="img/moon knight.jpg" alt="">
-        </a>
-        <a href="book.html?Jawan" class="card">
-            <img src="img/jailer.webp" alt="">
-        </a>
-        <a href="book.html?Jawan" class="card">
-            <img src="img/subedar.jpg" alt="">
-        </a>
+    <div id="homePage" class="home-container">
+        <h1 style="font-size: 2rem; font-weight: 700; margin-bottom: 1rem;">Now Showing</h1>
+        <div class="movies-grid" id="moviesGrid">
+            
+        </div>
+    </div>
+
+    <div id="bookingPage" class="booking-container">
+        <div class="booking-layout">
+            
+            <div class="sidebar">
+                <div class="back-btn" onclick="showHome()">
+                    <i class="bi bi-arrow-left"></i>
+                    Back to Movies
+                </div>
+                
+                <div class="poster-container">
+                    <img id="moviePoster" src="" alt="Movie Poster">
+                    <div class="video-container">
+                        <video id="trailerVideo" class="video-player" controls>
+                            <source src="" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-overlay" id="videoOverlay">
+                            <button class="play-btn" onclick="toggleTrailer()">
+                                <i id="playIcon" class="bi bi-play-fill"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="movie-details">
+                    <div class="detail-group">
+                        <div class="detail-label">Directed by</div>
+                        <div class="detail-value" id="movieDirector"></div>
+                    </div>
+                    <div class="detail-group">
+                        <div class="detail-label">Starring</div>
+                        <div class="detail-value" id="movieCast"></div>
+                    </div>
+                    <div class="detail-group">
+                        <div class="detail-label">Duration</div>
+                        <div class="detail-value" id="movieDuration"></div>
+                    </div>
+                </div>
+            </div>
+
+           
+            <div class="main-content">
+                <div class="background-overlay" id="backgroundOverlay"></div>
+                <div class="gradient-overlay"></div>
+                
+                <div class="content-wrapper">
+                    
+                    <div class="movie-header">
+                        <h1 class="movie-title-main" id="movieTitleMain"></h1>
+                        <div class="movie-meta">
+                            <span id="movieGenre"></span>
+                            <span class="rating-badge" id="movieRating"></span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="selection-grid">
+                        <div class="selection-section">
+                            <h3 class="section-title">Select Date</h3>
+                            <div class="date-grid" id="dateGrid">
+
+                            </div>
+                        </div>
+                        
+                        <div class="selection-section">
+                            <h3 class="section-title">Show Times</h3>
+                            <div class="time-grid" id="timeGrid">
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="screen-section" id="screenSection" style="display: none;">
+                        <div class="screen"></div>
+                        
+                        <div class="seats-container">
+                            <div id="seatsContainer">
+                            </div>
+                        </div>
+
+                        <div class="seat-legend">
+                            <div class="legend-item">
+                                <div class="legend-seat legend-available"></div>
+                                <span>Available</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-seat legend-selected"></div>
+                                <span>Selected</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-seat legend-booked"></div>
+                                <span>Booked</span>
+                            </div>
+                        </div>
+
+                        <div class="booking-summary" id="bookingSummary">
+                            <div class="summary-info">
+                                <div class="selected-info">
+                                    <div class="selected-seats" id="selectedSeatsText"></div>
+                                    <div class="show-info" id="showInfo"></div>
+                                </div>
+                                <div class="total-price" id="totalPrice">₹0</div>
+                            </div>
+                            <button class="continue-btn" onclick="showCustomerForm()">
+                                Continue to Payment
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  
+    <div id="customerForm" class="customer-form">
+        <div class="back-btn" onclick="showBooking()">
+            <i class="bi bi-arrow-left"></i>
+            Back to Seats
+        </div>
+
+        <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 2rem; text-align: center;">Complete Your Booking</h2>
+
+        <div class="form-section">
+            <h3 style="font-size: 1.2rem; font-weight: 600; margin-bottom: 1rem;">Booking Summary</h3>
+            <div class="booking-details" id="bookingDetailsGrid">
+                
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3 style="font-size: 1.2rem; font-weight: 600; margin-bottom: 1rem;">Customer Information</h3>
+            <div class="form-group">
+                <input type="text" class="form-input" id="customerName" placeholder="Full Name *" required>
+            </div>
+            <div class="form-group">
+                <input type="email" class="form-input" id="customerEmail" placeholder="Email Address *" required>
+            </div>
+            <div class="form-group">
+                <input type="tel" class="form-input" id="customerPhone" placeholder="Phone Number *" required>
+            </div>
+            <button class="continue-btn" onclick="confirmBooking()">
+                <i class="bi bi-credit-card" style="margin-right: 0.5rem;"></i>
+                Confirm Booking
+            </button>
+        </div>
     </div>
 
     
+    <div id="confirmationPage" class="confirmation-container">
+        <div class="success-icon">
+            <i class="bi bi-check-lg"></i>
+        </div>
+        
+        <h1 class="confirmation-title">Booking Confirmed!</h1>
+        <p style="color: var(--text-muted); margin-bottom: 2rem;">Your tickets have been booked successfully</p>
+
+        <div id="digitalTickets">
+           
+        </div>
+
+        <div class="form-section">
+            <h3 style="font-size: 1.2rem; font-weight: 600; margin-bottom: 1rem;">Booking Details</h3>
+            <div id="finalBookingDetails">
+                
+            </div>
+        </div>
+
+        <p style="color: var(--text-muted); margin: 2rem 0;">
+            A confirmation email has been sent to <span id="confirmEmail"></span>
+        </p>
+
+        <div class="action-buttons">
+            <button class="btn btn-primary" onclick="resetBooking()">Book Another Movie</button>
+            <button class="btn btn-secondary" onclick="showBooking()">Back to Booking</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
